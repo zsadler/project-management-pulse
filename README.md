@@ -1,6 +1,10 @@
 # masterclass
 
-This template should help get you started developing with Vue 3 in Vite.
+Pulse Project management system
+
+## ENV Variable Dependencies
+Need create a .env file and add Supabase URL and Supabase Key in the .env file. 
+Use the .env.example file to help get you started.
 
 ## Recommended IDE Setup
 
