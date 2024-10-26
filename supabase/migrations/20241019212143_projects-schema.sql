@@ -12,3 +12,6 @@ create table
                  status current_status default 'todo' not null,
                  collaborators text array default array[]::varchar[] not null
 );
+
+-- Add row level security to the projects table
+-- alter table projects enable row level security;

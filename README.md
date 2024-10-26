@@ -2,6 +2,14 @@
 
 Pulse Project management system
 
+### Built with
+- [shadcn-vue](https://www.shadcn-vue.com/)
+- [Vite](https://vitejs.dev/)
+- [Supabase](https://supabase.io/)
+- [Vue 3](https://v3.vuejs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
 ## ENV Variable Dependencies
 Need create a .env file and add Supabase URL and Supabase Key in the .env file. 
 Use the .env.example file to help get you started.

@@ -12,3 +12,6 @@ tasks (
   project_id bigint references projects (id) default null,
   collaborators text array default array[]::varchar[] not null
 );
+
+-- Add row level security to the tasks table
+-- alter table tasks enable row level security;
