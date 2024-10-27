@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import TopNavBar from '@/components/layout/TopNavBar.vue'
-import SideBarNav from '@/components/layout/SideBarNav.vue'
 </script>
 
 <template>

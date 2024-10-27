@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import AuthLayout from '@/components/layout/main/AuthLayout.vue'
 </script>
 
 <template>
-<AuthLayout>
-    <RouterView />
-</AuthLayout>
+    <AuthLayout>
+        <RouterView v-slot="{ Component, route }">
+            <Suspense v-if="Component" :timeout="1">
+                <Component :is="Component" :key="route.name" />
+                <template #fallback>
+                    <span> Loading...</span>
+                </template>
+            </Suspense>
+        </RouterView>
+    </AuthLayout>
 </template>

@@ -1,14 +1,11 @@
 <script setup lang="ts"> // eslint-disable-line
 import { supabase } from '@/lib/supabaseClient'
-import { h, ref } from 'vue'
-
 import type {Tables } from '../../../database/types'
 import type { ColumnDef } from '@tanstack/vue-table'
-import DataTable from '@/components/ui/data-table/DataTable.vue'
 import { RouterLink } from 'vue-router'
 
 const tasks = ref<Tables<'tasks'>[] | null>(null)
-;(async () => {
+const getTasks = async () => {
   const { data, error } = await supabase
     .from('tasks')
     .select('*')
@@ -17,7 +14,9 @@ const tasks = ref<Tables<'tasks'>[] | null>(null)
 
   tasks.value = data
   // console.log(tasks.value)
-})()
+}
+
+await getTasks()
 
 const columns: ColumnDef<Tables<'tasks'>>[] = [
     {
