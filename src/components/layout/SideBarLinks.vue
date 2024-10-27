@@ -12,6 +12,7 @@ defineProps<{
 
 <template>
     <RouterLink v-for="link in links"
+                exact-active-class="text-primary bg-muted"
                 :key="link.to"
                 :to="link.to"
                 :title="link.title"
@@ -21,10 +22,3 @@ defineProps<{
         <span class="hidden lg:block text-nowrap">{{ link.title }}</span>
     </RouterLink>
 </template>
-
-<style scoped>
-.router-link-active {
-    color: var(--color-primary);
-    background-color: var(--color-primary-foreground);
-}
-</style>

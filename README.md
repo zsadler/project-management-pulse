@@ -1,24 +1,21 @@
-# masterclass
+# project-management-pulse
 
 Pulse Project management system
 
 ### Built with
-- [shadcn-vue](https://www.shadcn-vue.com/)
 - [Vite](https://vitejs.dev/)
-- [Supabase](https://supabase.io/)
 - [Vue 3](https://v3.vuejs.org/)
+- [Supabase](https://supabase.io/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn-vue](https://www.shadcn-vue.com/)
+- [Tanstack](https://tanstack.com/)
 - [iconify](https://iconify.design/)
   - [Lucide](https://lucide.dev/)
 
 ## ENV Variable Dependencies
 Need create a .env file and add Supabase URL and Supabase Key in the .env file. 
 Use the .env.example file to help get you started.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
 ## Type Support for `.vue` Imports in TS
 
