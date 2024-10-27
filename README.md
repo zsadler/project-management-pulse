@@ -10,6 +10,7 @@ Pulse Project management system
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [iconify](https://iconify.design/)
+  - [Lucide](https://lucide.dev/)
 
 ## ENV Variable Dependencies
 Need create a .env file and add Supabase URL and Supabase Key in the .env file. 
