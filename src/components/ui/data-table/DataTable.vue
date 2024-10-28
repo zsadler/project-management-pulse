@@ -1,10 +1,7 @@
 <script setup lang="ts" generic="TData, TValue">
+// using vue-auto-imports for components
 import type { ColumnDef } from '@tanstack/vue-table'
-import {
-    FlexRender,
-    getCoreRowModel,
-    useVueTable,
-} from '@tanstack/vue-table'
+import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table'
 
 const props = defineProps<{
     columns: ColumnDef<TData, TValue>[]

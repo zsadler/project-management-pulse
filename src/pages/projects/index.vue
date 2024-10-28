@@ -1,14 +1,20 @@
 <script setup lang="ts"> // eslint-disable-line
-import { supabase } from '@/lib/supabaseClient'
+// auto importing enabled
 import type {Tables } from '../../../database/types'
 import type { ColumnDef } from '@tanstack/vue-table'
 import { RouterLink } from 'vue-router'
 
-const projects = ref<Tables<'projects'>[] | null>(null)
+// supabaseQueries imports
+import {
+    type Projects, projectsQuery
+} from '@/utils/supabaseQueries'
+
+// importing page store from pinia
+usePageStore().pageData.title = 'Projects'
+
+const projects = ref<Projects | null>(null)
 const getProjects = async () => {
-  const { data, error } = await supabase
-    .from('projects')
-    .select('*')
+    const { data, error } = await projectsQuery
 
   if (error)  console.error(error)
 
@@ -58,6 +64,5 @@ const columns: ColumnDef<Tables<'projects'>>[] = [
 </script>
 
 <template>
-  <h1>Welcome Projects</h1>
     <DataTable v-if="projects" :columns="columns" :data="projects" />
 </template>

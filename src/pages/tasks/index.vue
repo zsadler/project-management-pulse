@@ -1,14 +1,19 @@
 <script setup lang="ts"> // eslint-disable-line
-import { supabase } from '@/lib/supabaseClient'
-import type {Tables } from '../../../database/types'
+// auto importing enabled
 import type { ColumnDef } from '@tanstack/vue-table'
 import { RouterLink } from 'vue-router'
 
-const tasks = ref<Tables<'tasks'>[] | null>(null)
+// supabaseQueries imports
+import {
+    type TaskWithProjects, tasksWithProjectQuery
+} from '@/utils/supabaseQueries'
+
+// importing page store from pinia
+usePageStore().pageData.title = 'Tasks'
+
+const tasks = ref<TaskWithProjects | null>(null)
 const getTasks = async () => {
-  const { data, error } = await supabase
-    .from('tasks')
-    .select('*')
+  const { data, error } = await tasksWithProjectQuery
 
   if (error)  console.error(error)
 
@@ -18,17 +23,10 @@ const getTasks = async () => {
 
 await getTasks()
 
-const columns: ColumnDef<Tables<'tasks'>>[] = [
-    {
-        accessorKey: 'project_id',
-        header: () => h('div', { class: 'text-left' }, 'ID'),
-        cell: ({ row }) => {
-            return h('div', { class: 'text-left' }, row.getValue('project_id'))
-        }
-    },
+const columns: ColumnDef<TaskWithProjects[0]>[] = [
     {
         accessorKey: 'name',
-        header: () => h('div', { class: 'text-left' }, 'Project'),
+        header: () => h('div', { class: 'text-left' }, 'Task'),
         cell: ({ row }) => {
             return h(
                 RouterLink,
@@ -55,12 +53,28 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
         }
     },
     {
+        accessorKey: 'projects',
+        header: () => h('div', { class: 'text-left' }, 'Assoc. Project'),
+        cell: ({ row }) => {
+            return row.original.projects ?
+                h(
+                RouterLink,
+                {
+                    to: `/projects/${row.original.projects.slug}`,
+                    class: 'text-left font-medium hover:bg-muted block w-full'
+                },
+                () => row.original.projects?.name
+            ) : h('div', { class: 'text-left' }, '\u2014 No associated project \u2014')
+        }
+    },
+    {
         accessorKey: 'collaborators',
         header: () => h('div', { class: 'text-left' }, 'Collaborators'),
         cell: ({ row }) => {
-            return h('div',
+            return row.original.projects ? h('div',
                 { class: 'text-left' },
-                 row.getValue('collaborators').toString())
+                (row.original.collaborators).toString())
+                : h('div', { class: 'text-left' }, '\u2014 No collaborators \u2014')
         }
     },
 ]
@@ -68,7 +82,6 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
 </script>
 
 <template>
-  <h1>Tasks</h1>
     <DataTable v-if="tasks" :columns="columns" :data="tasks" />
 </template>
 
