@@ -2,8 +2,8 @@ import { supabase } from '@/lib/supabaseClient'
 import type { QueryData } from '@supabase/supabase-js'
 
 /**
- * @tasksWithProjectQuery - All Tasks listing page
- * @returns TaskWithProjects - All Tasks with any associated project data
+ * @tasksWithProjectQuery - Gets all tasks w associated project{id, name, and slug}
+ * @returns TaskWithProjects - All Tasks with any associated project data query result
  */
 export const tasksWithProjectQuery = supabase.from('tasks')
     .select(`*, 
@@ -13,8 +13,8 @@ export const tasksWithProjectQuery = supabase.from('tasks')
 export type TaskWithProjects = QueryData<typeof tasksWithProjectQuery>
 
 /**
- * @taskQuery - Single Task details page
- * @returns Task - Task details
+ * @projectsQuery - Gets all projects{*}
+ * @returns Projects - all projects query result
  */
 export const projectsQuery = supabase
         .from('projects')
@@ -23,9 +23,9 @@ export const projectsQuery = supabase
 export type Projects = QueryData<typeof projectsQuery>
 
 /**
- * @taskQuery - Single Project details page
+ * @projectQuery - Gets single project details equal to the slug with associated tasks{id, name, status, and due_date}
  * @param {string} slug - project slug
- * @returns Project - Project details
+ * @returns Project - individual project details query result
  */
 export const projectQuery = (slug: string) => supabase.from('projects')
     .select(`*,
