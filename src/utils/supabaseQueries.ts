@@ -34,4 +34,4 @@ export const projectQuery = (slug: string) => supabase.from('projects')
     .eq('slug', slug)
     .single()
 
-export type Project = QueryData<typeof projectQuery>
+export type Project = QueryData<ReturnType <typeof projectQuery>>

@@ -2,6 +2,7 @@
 // using vue-auto-imports for components
 import type { ColumnDef } from '@tanstack/vue-table'
 import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table'
+import { TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
 const props = defineProps<{
     columns: ColumnDef<TData, TValue>[]

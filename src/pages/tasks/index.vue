@@ -5,7 +5,7 @@ import {
     type TaskWithProjects, tasksWithProjectQuery
 } from '@/utils/supabaseQueries'
 
-import {columns} from '@/utils/tableColumns/tasksColumns'
+import { columns } from '@/utils/tableColumns/tasksColumns'
 
 // importing page store from pinia
 usePageStore().pageData.title = 'Tasks'

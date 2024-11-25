@@ -6,6 +6,7 @@ import { columns } from '@/utils/tableColumns/projectsColumns'
 import {
     type Projects, projectsQuery
 } from '@/utils/supabaseQueries'
+import DataTable from '@/components/ui/data-table/DataTable.vue'
 
 // importing page store from pinia
 usePageStore().pageData.title = 'Projects'

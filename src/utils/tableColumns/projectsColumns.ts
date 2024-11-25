@@ -1,6 +1,6 @@
-import type { ColumnDef } from '@tanstack/vue-table'
-import type { Tables } from '../../../database/types'
 import { RouterLink } from 'vue-router'
+import type { ColumnDef } from '@tanstack/vue-table'
+import type { Projects } from '../supabaseQueries'
 
 /**
  * @columns - Project Table Columns
