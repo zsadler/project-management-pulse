@@ -1,29 +1,28 @@
 <script setup lang="ts"> // eslint-disable-line
 // auto importing enabled
-import { columns } from '@/utils/tableColumns/projectsColumns'
+import { columns } from '@/utils/tableColumns/projectsColumns';
 
 // supabaseQueries imports
 import {
     type Projects, projectsQuery
 } from '@/utils/supabaseQueries'
-import DataTable from '@/components/ui/data-table/DataTable.vue'
+import DataTable from '@/components/ui/data-table/DataTable.vue';
 
 // importing page store from pinia
-usePageStore().pageData.title = 'Projects'
+usePageStore().pageData.title = 'Projects';
 
-const projects = ref<Projects | null>(null)
+// Reactive reference to hold the projects  data.
+const projects = ref<Projects | null>(null);
+
+// Define a function to fetch all projects data
 const getProjects = async () => {
-    const { data, error } = await projectsQuery
+    const { data, error, status } = await projectsQuery;
+    if (error) if (error) useErrorStore().setError({ error, errorCode: status });
 
-  if (error)  console.error(error)
-
-  projects.value = data
-  // console.log(projects.value)
+    projects.value = data;
 }
 
-await getProjects()
-
-
+await getProjects();
 </script>
 
 <template>
