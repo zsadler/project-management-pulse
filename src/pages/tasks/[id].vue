@@ -5,7 +5,6 @@ import {
 
 // specify route
 const route = useRoute('/tasks/[id]');
-
 // Define a Ref to store task data
 const task= ref<Task | null>(null);
 

@@ -17,14 +17,20 @@ export const useErrorStore = defineStore('error-store', () => {
      */
     const setError = ({ error, errorCode }: { error: string | PostgrestError | Error, errorCode?: number }) => {
         // handle native js error or custom string error
-        if (typeof error === 'string' || error instanceof Error) {
-            activeError.value = typeof error === 'string' ? Error(error) : error;
+        if (typeof error === 'string') {
+            activeError.value = new Error(error) as CustomError;
             activeError.value.errorCode = errorCode || 500;
-            return;
+        } else if (error instanceof Error) {
+            activeError.value = error;
+            activeError.value.errorCode = errorCode || 500;
+            if(error?.stack) {
+                activeError.value.errorStack = error.stack;
+            }
+        } else {
+            // handle postgrest error
+            activeError.value = error as ExtendedPostgrestError;
+            activeError.value.statusCode = errorCode || 500;
         }
-        // handle postgrest error
-        activeError.value = error as ExtendedPostgrestError;
-        activeError.value.statusCode = errorCode || 500;
     };
 
     return {

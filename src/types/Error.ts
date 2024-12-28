@@ -1,7 +1,7 @@
 import type { PostgrestError } from '@supabase/supabase-js'
 
 /**
- * Interface representing a custom error with an optional error code.
+ * Interface representing a custom error with an optional properties.
  * Extends the built-in Error interface.
  */
 export interface CustomError extends Error {
@@ -10,6 +10,12 @@ export interface CustomError extends Error {
      * @type {number}
      */
     errorCode?: number
+
+    /**
+     * Optional stack trace associated with the error.
+     * @type {string}
+     */
+    errorStack?: string
 }
 
 export interface ExtendedPostgrestError extends PostgrestError {
