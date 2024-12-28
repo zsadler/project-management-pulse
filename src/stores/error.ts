@@ -1,19 +1,22 @@
 import type { CustomError, ExtendedPostgrestError } from '@/types/Error';
-import type { PostgrestError } from '@supabase/supabase-js'
+import type { PostgrestError } from '@supabase/supabase-js';
 
 /**
  * Defines the error store using Pinia.
  * @returns {Object} The active error and setError function.
  */
 export const useErrorStore = defineStore('error-store', () => {
-
+    /**
+     * Reactive reference to the active error.
+     * @type {import('vue').Ref<null | CustomError | ExtendedPostgrestError | Error>}
+     */
     const activeError = ref<null | CustomError | ExtendedPostgrestError | Error>(null);
 
     /**
-     * Sets the active error with the provided message and code.
+     * Sets the active error with the provided error and code.
      * @param {Object} param0 - The error details.
-     * @param {string} param0.error - The error message.
-     * @param {number} param0.errorCode - The error code.
+     * @param {string | PostgrestError | Error} param0.error - The error object or message.
+     * @param {number} [param0.errorCode] - The optional error code.
      */
     const setError = ({ error, errorCode }: { error: string | PostgrestError | Error, errorCode?: number }) => {
         // handle native js error or custom string error

@@ -19,7 +19,7 @@
     if(error.value && !('code' in error.value)) {
         errorMsg.value = error.value.message ?? 'An error occurred'
         errorCode.value = error.value.errorCode ?? 0
-        errorStack.value = error.value.errorStack ?? null
+        errorStack.value = error.value.errorStack?.trimStart() ?? null
     }
     // If there is an active Postgrest error, set the error message, error code, and error details
     if(error.value && 'code' in error.value) {
@@ -45,8 +45,11 @@
             <p class="error__msg">Error Msg: {{ errorMsg }}</p>
             <p class="error__text" v-if="errorDetails">Error Details: {{ errorDetails }}</p>
             <p class="error__text" v-if="errorHint">Error Hint: {{ errorHint }}</p>
-            <p class="error__stack" v-if="errorStack">Error Stack: {{ errorStack }}</p>
-
+            <pre v-if="errorStack" class="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto">
+                <code class="font-mono">
+                    {{ errorStack }}
+                </code>
+            </pre>
             <div class="error-footer">
                 <p class="error-footer__text">You'll find lots to explore on the home page.</p>
                 <RouterLink to="/">

@@ -21,7 +21,6 @@ const getTasks = async () => {
 }
 // Update the template with the fetched data
 await getTasks()
-newd;
 </script>
 
 <template>
